@@ -1,0 +1,76 @@
+\documentclass{beamer}
+
+\usepackage[italian]{babel}
+
+\usetheme{Boadilla}
+\title{01 - Under the hood}
+\author{Bailetti Tommaso}
+\institute{ITI Don Orione}
+\date{27 gennaio 2022}
+\begin{document}
+    \begin{frame}
+        \titlepage
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Diversi paradigmi di programmazione}
+    
+        \begin{description}
+            \item<1-> [Logica] Un insieme di regole logiche la cui esecuzione equivale a una dimostrazione.
+            \item<2-> [Imperativa/Funzionale] Dove il linguaggio di programmazione svolge generalmente \textbf{funzioni}, le quali ritornano un risultato.
+            \item<3-> [Oggetti] Il tutto si basa sul concetto di \textbf{classe}, dalla quale si derivano successivamente \textbf{Oggetti}, \textbf{proprietà} e \textbf{metodi}.
+        \end{description}
+    
+    \end{frame}
+    
+    \begin{frame}
+        \frametitle{Fasi di sviluppo di un Software}
+    
+        \begin{description}
+            \item[Codifica (editing)]<1-> L'algoritmo viene scritto in un linguaggio di programmazione. Il codice prodotto viene chiamato \textbf{codice sorgente}.
+            \item[Compilazione]<2-> Quando trasformiamo il nostro codice sorgente in un programma avviene la \textbf{compilazione}. Vengono prodotti comandi direttamente per il processore.
+            \item[Linking]<3-> Il \textbf{linking} è il processo per la quale vengono assemblati insieme più parti del nostro codice. Il risultato di questo linking è un eseguibile pronto per il nostro computer.
+        \end{description}
+    
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Ciclo di sviluppo di un software}
+    
+        \begin{description}
+            \item[Progettazione]<1-> La progettazione è il processo della produzione di un software più importante. Qui disegnamo solitamente uno schema per vedere come il nostro software si comporta.
+            \item[Testing]<2-> Testando il nostro software abbiamo la possibilità di confutare se lo sviluppo è andato a buon fine. In aggiunta ci permette in anticipo di trovare bug e correggere eventuali malfunzionamenti.
+        \end{description}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Ciclo di sviluppo di un software}
+    
+        \begin{description}
+            \item[Documentazione]<1-> La documentazione è la produzione di manuali (tramite processi manuali o automatici) che descrivono come utilizzare il nostro software. Sono di due tipi:
+            \begin{itemize}
+                \item Manuale Utente
+                \item Manuale Tecnico
+            \end{itemize}
+            \item[Manutenzione]<2-> La manutenzione è l'aspetto più importante del nostro software. Di fatto è un processo nello sviluppo che non finisce mai. È composto da: continua correzione di bug (manutenzione correttiva) e continua aggiunta di \textbf{feature} (manutenzione evolutiva).
+        \end{description}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Approcci nell'esecuzione del software}
+    
+        \begin{description}
+            \item[Compilato]<1-> L'approcco compilato viene usato generalmente da linguaggi a basso livello. Il \textbf{compilatore} produce del codice oggetto che (dopo aver effettuato il \textbf{linking}) viene direttamente eseguito sul processore.
+            \item[Interpretato]<2-> L'interpretazione del \textbf{codice sorgente} è una pratica inaspettatamente "molto utilizzata" nei linguaggi di programmazione moderni. Ha il vantaggio di non dover compilare nulla, tuttavia potrebbero effettuarsi ritardi nell'esecuzione del programma a causa della conversione continua che avviene durante l'esecuzione.
+        \end{description}
+    
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{L'approccio Java}
+    
+        L'approccio effettuato da Java, è diverso da quelli precedenti. È presente, all'interno di ogni computer che esegue il codice Java una "virtual machine" che esegue il \textbf{compilato} Java (detto \textbf{byte-code}). Ma interpreta le chiamate al sistema. Questo permette agli sviluppatori di scrivere il codice una volta e eseguirlo ovunque. Da qui nasce il motto "\texttt{Write once, run everywhere}".
+        
+    \end{frame}
+
+\end{document}
