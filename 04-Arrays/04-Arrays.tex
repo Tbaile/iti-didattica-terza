@@ -1,0 +1,187 @@
+\documentclass{beamer}
+
+\usepackage[italian]{babel}
+\usepackage{minted}
+\usepackage{mdframed}
+
+\surroundwithmdframed{minted}
+
+\newminted{cpp}{linenos,autogobble,breaklines}
+
+\newcommand{\scaledimage}[1]{\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{#1}}
+
+\usetheme{Boadilla}
+\title{04 - Arrays}
+\author{Bailetti Tommaso}
+\institute{ITI Don Orione}
+\date{17 febbraio 2022}
+
+\begin{document}
+
+    \begin{frame}
+        \titlepage
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Definizione di Array}
+        Gli array sono un insieme omogeneo di variabili, le quali si possono riferire come un unico insieme.
+        \onslide<2->
+        I singoli elementi si identificano con un indice.
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Vettori}
+        Un vettore non è altro che una variabile che referenzia multiple variabili dello stesso tipo. Posso istanziare un vettore con la seguente sintassi:
+        \onslide<2->
+        \begin{cppcode}
+            float alfa[10];
+        \end{cppcode}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Vettori}
+        Analizziamo cosa abbiamo di fatto scritto nel codice prima:
+        \begin{description}
+            \item[float]<2-> è il tipo del nostro array
+            \item[alfa]<3-> è il nome del nostro array
+            \item[10]<4-> è il numero di valori che vogliamo salvare all'interno dell'array.  
+        \end{description}
+        \begin{block}<5->{Attenzione}
+            Non è possibile cambiare quanti valori salviamo all'interno dell'array.
+        \end{block}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Definizione di un array}
+    
+        Gli array sono definibili in diversi modi, alcuni modi li trovate sotto:
+        \onslide<2->
+        \begin{cppcode}
+            int alpha[] = {0, 1, 2, 3, 4};
+            int beta[5] = {1, 2, 3, 4, 5};
+            //Inizializzo tutti i valori a 0
+            int gamma[10] = {}; 
+        \end{cppcode}
+        \begin{block}<3->{Nota}
+            Utilizzare "\mintinline{cpp}{= {0}}" inizializza tutto l'array a 0, tuttavia se utilizziamo ad esempio "\mintinline{cpp}{= {10}}" \textbf{SOLO} il primo elemento viene inizializzato a 10, gli altri rimarranno a 0.
+        \end{block}
+    
+    \end{frame}
+    
+    \begin{frame}[fragile]
+        \frametitle{Utilizzare un array}
+            
+        Un array si usa come una variabile, tuttavia va inserito tra le partentesi quadre l'indice dell'elemento che voglio utilizzare.
+        \onslide<2->
+        \begin{cppcode}
+            int alpha[] = {10, 20, 30, 40, 50};
+            // Inserisco 100 al posto di 20
+            alpha[1] = 100;
+            // Stamperà "30" a console
+            cout << alpha[2];
+            // L'input dell'utente sovrascriverà il valore "50"
+            cin >> alpha[4];
+        \end{cppcode}
+    
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Iterare su vettori}
+
+        Iterare un vettore è sostanzialmente molto semplice, è necessario utilizzare un ciclo \mintinline{cpp}{for} e conoscere la dimensione dell'array.
+        \onslide<2->
+        \begin{cppcode}
+            const int DIM_ARRAY = 10;
+
+            int data[DIM_ARRAY] = {};
+            
+            for (int i = 0; i < DIM_ARRAY; i++) {
+                data[i] = 10*(i + 1);
+            }
+            
+            for (int i = 0; i < DIM_ARRAY; i++) {
+                cout << i + 1 << "° valore è: " << data[i] << endl;
+            }
+        \end{cppcode} 
+
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Matrici di valori}
+    
+        C'è la possibilità di aggiungere ai nostri vettori un'ulteriore dimensione. 
+        \onslide<2->
+
+        Vedetela come se con gli array a singola dimensione abbiamo dei vettori, qui abbiamo delle tabelle.
+        \onslide<3->
+
+        \begin{cppcode}
+            const int SQUARED_SIZE = 5;
+
+            int table[SQUARED_SIZE][SQUARED_SIZE] = {};
+
+            for (int i = 0; i < SQUARED_SIZE; i++) {
+                for (int j = 0; j < SQUARED_SIZE; j++) {
+                    cout << table[i][j] << "\t";
+                }
+                cout << endl;
+            }
+        \end{cppcode}
+    
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Gli array e le funzioni}
+    
+        È possibile utilizzare gli array come parametri delle funzioni, \textbf{bisogna stare attenti} perché gli array passati come parametri sono \textbf{SEMPRE} passati per riferimento.
+    
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Gli array e le funzioni}
+    
+        \begin{cppcode}
+            void printArray(int data[], int dimArray) {
+                for (int i = 0; i < dimArray; i++) {
+                    cout << data[i] << endl;
+                }
+            }
+
+            int main() {
+                const int ARRAY_DIM = 10;
+                int data[ARRAY_DIM] = {};
+                printArray(data, ARRAY_DIM);
+                return 0;
+            }
+        \end{cppcode}
+    
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Le stringhe}
+
+        Una stringa non è altro che una serie di caratteri, di fatto è un vettore di \mintinline{cpp}{char}.
+        
+        \begin{cppcode}
+            char cat[] = "gatto";
+            char catChar[] = {'g', 'a', 't', 't', 'o', '\0'};
+        \end{cppcode}
+
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Lunghezza di una stringa}
+    
+        Al contrario degli array, mi è possibile andare a indagare sulla lunghezza di una stringa. Basta che itero il mio vettore fino a trovare il carattere \mintinline{cpp}{'\0'}, ovvero basta trovare il terminatore di stringa.
+        \onslide<2->
+        \begin{cppcode}
+            char cat[] = "gatto";
+            int i = 0;
+            while (cat[i] != '\0') {
+                i++;
+            }
+            cout << "Dimensione stringa cat: " << i << endl;
+        \end{cppcode}
+    
+    \end{frame}
+\end{document}
