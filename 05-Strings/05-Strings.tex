@@ -1,0 +1,98 @@
+\documentclass{beamer}
+
+\usepackage[italian]{babel}
+\usepackage{minted}
+\usepackage{mdframed}
+\usepackage{hyperref}
+
+\surroundwithmdframed{minted}
+
+\newminted{cpp}{linenos,autogobble,breaklines}
+
+\newcommand{\scaledimage}[1]{\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{#1}}
+
+\usetheme{Boadilla}
+\title{05 - String}
+\author{Bailetti Tommaso}
+\institute{ITI Don Orione}
+\date{03 Marzo 2022}
+
+\begin{document}
+    \begin{frame}
+        \titlepage
+    \end{frame}
+    
+    \begin{frame}
+        \frametitle{Cosa è una stringa?}
+    
+        Abbiamo definito la stringa come un array di caratteri. Sappiamo come lavorare con un array, abbiamo visto come sostituire dei caratteri, abbiamo visto come contare i caratteri di una stringa, ecc...
+
+        \onslide<2->
+        Se vi dicessi che c'è un modo per semplificare tutte queste operazioni? (che come sappiamo, necessitano di cicli, di eventuali separazioni in funzioni per non ripetere il codice troppe volte, ecc...)
+    
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{L'oggetto \mintinline{cpp}{string}}
+    
+        Cambiamo dunque la definizione di "stringa".
+        
+        Vi presento l'oggetto \mintinline{cpp}{string}.
+
+        \onslide<2->
+        Esatto, incominceremo attivamente a usare un oggetto, cosa che in realtà facevamo già con \mintinline{cpp}{cin} e \mintinline{cpp}{cout}.
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Definizione e inizializzazione di \mintinline{cpp}{string}}
+
+        Incominciamo con come definire e inizializzare una stringa. Vediamo le differenze tra array di caratteri e una stringa.
+
+        \onslide<2->
+        C'è già una cosa interessante. Con \mintinline{cpp}{string} noi ci dimentichiamo completamente della dimensione dell'array di caratteri.
+        \onslide<3->
+        \begin{cppcode}
+            // con la prima variabile siamo limitati a 12 caratteri.
+            char charHelloWorld[] = "Hello World!";
+            string stringHelloWorld = "Hello World!;
+        \end{cppcode}
+    
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Concatenazione di stringhe}
+    
+        \begin{cppcode}
+            string ab = "ab";
+            string cd = "cd";
+            string abcd = ab + cd;
+            // sotto stamperà "abcd"
+            // sto concatenando le due stringhe
+            cout << abcd;
+            // posso anche fare la concatenazione in maniera dinamica e con più elementi, sotto stamperà "ab cd"
+            cout << ab + " " + cd;
+        \end{cppcode}
+    
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Lunghezza di una stringa}
+
+        \begin{cppcode}
+            string testoLungo = "abcdefghijklmnopqrstuvwxyz";
+            // i due modi sotto sono equivalenti e stampano lo stesso numero
+            cout << testoLungo.length() << endl;
+            cout << testoLungo.size() << endl;
+        \end{cppcode}
+
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Metodi per svolgere tutto}
+    
+        Nonostante siamo in grado di accedere alla stringa come se fosse un array, è opportuno (ove possibile) utilizzare i \textbf{metodi} forniti dalla classe.
+
+        Troverete molte più info a questo link: \url{https://www.cplusplus.com/reference/string/string/} e successivamente sulla repository dei laboratori.
+    
+    \end{frame}
+\end{document}
