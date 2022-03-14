@@ -1,0 +1,160 @@
+\documentclass{beamer}
+
+\usepackage[italian]{babel}
+\usepackage{minted}
+\usepackage{mdframed}
+\usepackage{hyperref}
+
+\surroundwithmdframed{minted}
+
+\newminted{cpp}{linenos,autogobble,breaklines}
+
+\newcommand{\scaledimage}[1]{\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{#1}}
+
+\usetheme{Boadilla}
+\title{06 - Structs}
+\author{Bailetti Tommaso}
+\institute{ITI Don Orione}
+\date{10 Marzo 2022}
+
+\begin{document}
+    \begin{frame}
+        \titlepage
+    \end{frame}
+    
+    \begin{frame}
+        \frametitle{I dati non omogenei sono fastidiosi.}
+    
+        Ormai (dovremmo) aver imparato quali sono i tipi di variabile utilizzabili in C++. Tuttavia questi non si prestano efficentemente quando dobbiamo utilizzare molti dati di diverso tipo.
+
+        \onslide<2->
+        Banalmente abbiamo visto l'esempio del registro, comprendiamo che non è una cosa facile gestire i diversi tipi di dati, anzi, diventa un problema a ogni tipo di dato che aggiungiamo.
+    
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Cosa sono le \mintinline{cpp}{struct}?}
+    
+        Le \mintinline{cpp}{struct} sono un tipo di dato che definisce il programmatore, il quale contiene al suo interno variabili non necessariamente omogenee.
+
+        \onslide<2->
+        Di fatto creiamo un nuovo tipo di variabile, che possiamo usare all'interno della nostra applicazione, vediamo come:
+
+        \onslide<3->
+        \begin{cppcode}
+            struct user {
+                string name;
+                string surname;
+                int birthDay;
+                int birthMonth;
+                int birthYear;
+            };
+        \end{cppcode}
+    
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Okay, tutto bellissimo, ma come si usa?}
+    
+        Non ci sono di fatto cose particolari da scrivere per poter usare una \mintinline{cpp}{struct}, posso dichiarare una variabile di tipo struttura con il codice seguente:
+
+        \onslide<2->
+        \begin{cppcode}
+            user coolUser;
+        \end{cppcode}
+    
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Stupendo, ma per le variabili "dentro"?}
+    
+        Per le variabili poste all'interno della nostra struttura, possiamo assegnarle o recuperarle tramite la seguente sintassi:
+        
+        \onslide<2->
+        \begin{cppcode}
+            struct user {
+                string name;
+                string surname;
+                int birthDay;
+                int birthMonth;
+                int birthYear;
+            };
+            user coolUser;
+            // tirerà fuori il nome dell'utente
+            cout << coolUser.name;
+            // inserirà "Bailetti" dentro surname
+            coolUser.surname = "Bailetti";
+        \end{cppcode}
+    
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Inizializzazione di una \mintinline{cpp}{struct}}
+    
+        Come inizializziamo, quando dichiariamo una variabile di tipo \mintinline{cpp}{struct}, la nostra variabile?
+
+        \onslide<2->
+        Utilizziamo la stesso modo per inizializzare gli array:
+        \begin{cppcode}
+            // attenzione che è necessario che quello che inserite sia dello stesso TIPO
+            user coolUser = {"Tommaso", "Bailetti", 1, 4, 2004};
+        \end{cppcode}
+    
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Operazioni con le \mintinline{cpp}{struct}}
+    
+        Possiamo, come abbiamo visto prima, inserire o ottenere i valori dalla nostra struttura tramite il "punto", ma non solo.
+        
+        \onslide<2->
+        Ad esempio, come copio tutti i valori da una variabile \mintinline{cpp}{struct} a un'altra?
+        
+        \onslide<3->
+        \begin{cppcode}
+            user coolUser;
+            user anotherCoolUser;
+            // questo copia tutti i campi da coolUser a anotherCoolUser
+            anotherCoolUser = coolUser;
+        \end{cppcode}
+    
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Posso inserire \mintinline{cpp}{struct} dentro \mintinline{cpp}{struct}?}
+        
+        \pause
+        Certo, ecco come:
+        \begin{cppcode}
+            struct user {
+                string name;
+                string surname;
+                struct dataDiNascita {
+                    int birthDay;
+                    int birthMonth;
+                    int birthYear;
+                } 
+            }
+        \end{cppcode}
+    
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{E gli array? Funzionano allo stesso modo?}
+    
+        \pause
+        Si, bisogna giusto prestare attenzione a come accedere agli stessi:
+        \begin{cppcode}
+            // dichiaro la struttura
+            struct anotherUser {
+                string name;
+                int grades[10] = {};
+            };
+            // dichiaro e inizializzo la variabile
+            anotherUser user = {};
+            // inserisco il primo voto
+            user.grades[0] = 8;  
+        \end{cppcode}
+    
+    \end{frame}
+\end{document}
